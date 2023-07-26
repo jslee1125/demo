@@ -1,0 +1,120 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+
+  <div class="login__content">
+    <div class="login__img">
+      <img src="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg" alt="user login">
+    </div>
+    <div class="login__forms">
+      <!--         login form -->
+      <form th:action="@{/user/login}" class="login__register" id="login-in" method="post">
+        <div th:if="${param.error}">
+          <div class="alert alert-danger">
+            Check Your Id or Password!
+          </div>
+        </div>
+        <h1 class="login__title">Sign In</h1>
+        <div class="login__box">
+          <i class='bx bx-user login__icon'></i>
+          <input type="text" name="username" placeholder="Username" class="login__input">
+        </div>
+        <div class="login__box">
+          <i class='bx bx-lock login__icon'></i>
+          <input type="password" name="password" placeholder="Password" class="login__input">
+        </div>
+        <a href="#" class="login__forgot">Forgot Password? </a>
+        <a href="javascript:void(0);" class="login__button" onclick="submit();">Sign In</a>
+
+        <div>
+          <span class="login__account login__account--account">Don't Have an Account?</span>
+          <span class="login__signin login__signin--signup" id="sign-up">Sign Up</span>
+        </div>
+      </form>
+
+      <!--         create account form -->
+      <form th:action="@{/user/signup}" class="login__create none" id="login-up" method="post" th:object="${userCreateForm}">
+        <h1 class="login__title">Create Account</h1>
+        <div class="login__box">
+          <i class='bx bx-user login__icon'></i>
+          <input type="text" placeholder="Username" class="login__input">
+        </div>
+
+        <div class="login__box">
+          <i class='bx bx-at login__icon'></i>
+          <input type="text" placeholder="Email" class="login__input">
+        </div>
+
+        <div class="login__box">
+          <i class='bx bx-lock login__icon'></i>
+          <input type="password" placeholder="Password" class="login__input">
+        </div>
+
+        <a href="#" class="login__button">Sign Up</a>
+
+        <div>
+          <span class="login__account login__account--account">Already have an Account?</span>
+          <span class="login__signup login__signup--signup" id="sign-in">Sign In</span>
+        </div>
+
+        <div class="login__social">
+          <a href="#" class="login__social--icon"><i class='bx bxl-facebook'></i></a>
+          <a href="#" class="login__social--icon"><i class='bx bxl-twitter'></i></a>
+          <a href="#" class="login__social--icon"><i class='bx bxl-google'></i></a>
+          <a href="#" class="login__social--icon"><i class='bx bxl-github'></i></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<script layout:fragment="script" type="text/javascript">
+
+  const signup = document.getElementById("sign-up");
+    signin = document.getElementById("sign-in");
+    loginin = document.getElementById("login-in");
+    loginup = document.getElementById("login-up");
+
+    signup.addEventListener("click", () => {
+      loginin.classList.remove("block");
+      loginup.classList.remove("none");
+
+      loginin.classList.add("none");
+      loginup.classList.add("block");
+})
+
+  signin.addEventListener("click", () => {
+      loginin.classList.remove("none");
+      loginup.classList.remove("block");
+
+      loginin.classList.add("block");
+      loginup.classList.add("none");
+
+
+})
+
+  function submit(){
+  document.getElementById("login-in").submit();
+  }
+</script>
+</html>
+
+<!--<div layout:fragment="content" class="container my-3">-->
+<!--  <form th:action="@{/user/login}" method="post">-->
+<!--    <div th:if="${param.error}">-->
+<!--      <div class="alert alert-danger">-->
+<!--        사용자ID 또는 비밀번호를 확인해 주세요.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="username" class="form-label">사용자ID</label>-->
+<!--      <input type="text" name="username" id="username" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="password" class="form-label">비밀번호</label>-->
+<!--      <input type="password" name="password" id="password" class="form-control">-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">로그인</button>-->
+<!--  </form>-->
+<!--</div>-->
+<!--</html>-->
